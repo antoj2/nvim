@@ -1,0 +1,73 @@
+{
+  "plugins": {
+    "blink-copilot": {
+      "rev": "7ad8209b2f880a2840c94cdcd80ab4dc511d4f39",
+      "src": "https://github.com/fang2hou/blink-copilot.git"
+    },
+    "blink.cmp": {
+      "rev": "b19413d214068f316c78978b08264ed1c41830ec",
+      "src": "https://github.com/saghen/blink.cmp.git",
+      "version": ">=0.0.0"
+    },
+    "conform.nvim": {
+      "rev": "1bf8b5b9caee51507aa51eaed3da5b0f2595c6b9",
+      "src": "https://github.com/stevearc/conform.nvim.git"
+    },
+    "copilot-lsp": {
+      "rev": "a80e0c17e7366614d39506825f49a25d285fead9",
+      "src": "https://github.com/copilotlsp-nvim/copilot-lsp.git"
+    },
+    "copilot.lua": {
+      "rev": "4383e05a47493d7ff77b058c0548129eb38ec7fb",
+      "src": "https://github.com/zbirenbaum/copilot.lua.git"
+    },
+    "fidget.nvim": {
+      "rev": "e32b672d8fd343f9d6a76944fedb8c61d7d8111a",
+      "src": "https://github.com/j-hui/fidget.nvim.git"
+    },
+    "fzf-lua": {
+      "rev": "3b4a5d13adeb33f387d744b6ed777bb5401cba94",
+      "src": "https://github.com/ibhagwan/fzf-lua.git"
+    },
+    "gitsigns.nvim": {
+      "rev": "cdafc320f03f2572c40ab93a4eecb733d4016d07",
+      "src": "https://github.com/lewis6991/gitsigns.nvim.git"
+    },
+    "guess-indent.nvim": {
+      "rev": "84a4987ff36798c2fc1169cbaff67960aed9776f",
+      "src": "https://github.com/NMAC427/guess-indent.nvim.git"
+    },
+    "lualine.nvim": {
+      "rev": "3946f0122255bc377d14a59b27b609fb3ab25768",
+      "src": "https://github.com/nvim-lualine/lualine.nvim"
+    },
+    "mini.ai": {
+      "rev": "bfb26d9072670c3aaefab0f53024b2f3729c8083",
+      "src": "https://github.com/nvim-mini/mini.ai.git"
+    },
+    "mini.icons": {
+      "rev": "ff2e4f1d29f659cc2bad0f9256f2f6195c6b2428",
+      "src": "https://github.com/nvim-mini/mini.icons.git"
+    },
+    "mini.surround": {
+      "rev": "88c52297ed3e69ecf9f8652837888ecc727a28ee",
+      "src": "https://github.com/nvim-mini/mini.surround.git"
+    },
+    "nvim-lspconfig": {
+      "rev": "e0fae251f8459940331960106d4bd9457cec23de",
+      "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "oil.nvim": {
+      "rev": "7e1cd7703ff2924d7038476dcbc04b950203b902",
+      "src": "https://github.com/stevearc/oil.nvim.git"
+    },
+    "vague.nvim": {
+      "rev": "dba28050887c2810b5ebf9e0143b4e919bd55757",
+      "src": "https://github.com/vague-theme/vague.nvim.git"
+    },
+    "which-key.nvim": {
+      "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
+      "src": "https://github.com/folke/which-key.nvim.git"
+    }
+  }
+}

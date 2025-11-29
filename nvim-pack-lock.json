@@ -61,16 +61,12 @@
       "rev": "01cb3a8ad7d5e8707041edc775af83dbf33838f4",
       "src": "https://github.com/stevearc/oil.nvim.git"
     },
-    "vague.nvim": {
-      "rev": "dba28050887c2810b5ebf9e0143b4e919bd55757",
-      "src": "https://github.com/vague-theme/vague.nvim.git"
-    },
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
       "src": "https://github.com/folke/which-key.nvim.git"
     },
     "zen.nvim": {
-      "rev": "aca28b73eb278af8635805175b67562c6ea8e71c",
+      "rev": "ca71d00eeafdf291ed7edf03fba909b7291bc548",
       "src": "https://github.com/nendix/zen.nvim.git"
     }
   }

@@ -10,11 +10,11 @@
       "version": ">=0.0.0"
     },
     "conform.nvim": {
-      "rev": "1bf8b5b9caee51507aa51eaed3da5b0f2595c6b9",
+      "rev": "4993e07fac6679d0a5005aa7499e0bad2bd39f19",
       "src": "https://github.com/stevearc/conform.nvim.git"
     },
     "copilot-lsp": {
-      "rev": "a80e0c17e7366614d39506825f49a25d285fead9",
+      "rev": "884034b23c3716d55b417984ad092dc2b011115b",
       "src": "https://github.com/copilotlsp-nvim/copilot-lsp.git"
     },
     "copilot.lua": {
@@ -26,11 +26,11 @@
       "src": "https://github.com/j-hui/fidget.nvim.git"
     },
     "fzf-lua": {
-      "rev": "3b4a5d13adeb33f387d744b6ed777bb5401cba94",
+      "rev": "9a0704e8af8f8442110ff22a83b5608366b235df",
       "src": "https://github.com/ibhagwan/fzf-lua.git"
     },
     "gitsigns.nvim": {
-      "rev": "cdafc320f03f2572c40ab93a4eecb733d4016d07",
+      "rev": "5813e4878748805f1518cee7abb50fd7205a3a48",
       "src": "https://github.com/lewis6991/gitsigns.nvim.git"
     },
     "guess-indent.nvim": {
@@ -38,7 +38,7 @@
       "src": "https://github.com/NMAC427/guess-indent.nvim.git"
     },
     "lualine.nvim": {
-      "rev": "3946f0122255bc377d14a59b27b609fb3ab25768",
+      "rev": "47f91c416daef12db467145e16bed5bbfe00add8",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "mini.ai": {
@@ -54,11 +54,11 @@
       "src": "https://github.com/nvim-mini/mini.surround.git"
     },
     "nvim-lspconfig": {
-      "rev": "e0fae251f8459940331960106d4bd9457cec23de",
+      "rev": "07f4e93de92e8d4ea7ab99602e3a8c9ac0fb778a",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "oil.nvim": {
-      "rev": "7e1cd7703ff2924d7038476dcbc04b950203b902",
+      "rev": "01cb3a8ad7d5e8707041edc775af83dbf33838f4",
       "src": "https://github.com/stevearc/oil.nvim.git"
     },
     "vague.nvim": {
@@ -68,6 +68,10 @@
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
       "src": "https://github.com/folke/which-key.nvim.git"
+    },
+    "zen.nvim": {
+      "rev": "aca28b73eb278af8635805175b67562c6ea8e71c",
+      "src": "https://github.com/nendix/zen.nvim.git"
     }
   }
 }

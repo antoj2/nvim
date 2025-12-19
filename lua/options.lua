@@ -38,7 +38,14 @@ vim.opt.showmode = false
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+vim.o.expandtab = true
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 
 vim.g.loaded_python3_provider = 0
+
+vim.filetype.add {
+  extension = {
+    p8 = 'p8',
+  },
+}

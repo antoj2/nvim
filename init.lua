@@ -26,7 +26,51 @@ require('fidget').setup {
 }
 
 vim.pack.add { 'https://github.com/neovim/nvim-lspconfig' }
-vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'bashls', 'basedpyright', 'ts_ls' }
+vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'bashls', 'basedpyright', 'ts_ls', 'pico8_ls' }
+
+-- Java
+vim.pack.add {
+  {
+    src = 'https://github.com/JavaHello/spring-boot.nvim',
+    version = '218c0c26c14d99feca778e4d13f5ec3e8b1b60f0',
+  },
+  'https://github.com/MunifTanjim/nui.nvim',
+  'https://github.com/mfussenegger/nvim-dap',
+
+  'https://github.com/nvim-java/nvim-java',
+}
+
+require('java').setup {
+  jdk = {
+    auto_install = false,
+  },
+
+  lombok = {
+    enable = false,
+  },
+
+  java_test = {
+    enable = false,
+  },
+
+  java_debug_adapter = {
+    enable = false,
+  },
+
+  spring_boot_tools = {
+    enable = false,
+  },
+}
+vim.lsp.enable 'jdtls'
+
+vim.treesitter.language.register('pico8', 'p8')
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { '*.p8' },
+  callback = function()
+    vim.bo.commentstring = '-- %s'
+  end,
+})
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
@@ -150,7 +194,7 @@ vim.pack.add { 'https://github.com/stevearc/conform.nvim.git' }
 require('conform').setup {
   notify_on_error = false,
   format_on_save = function(bufnr)
-    local disable_filetypes = { c = true }
+    local disable_filetypes = { c = true, p8 = true }
     return {
       timeout_ms = 2500,
       lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],

@@ -19,3 +19,8 @@ vim.cmd.colorscheme 'vague'
 
 -- vim.pack.add { 'https://github.com/dgox16/oldworld.nvim.git' }
 -- vim.cmd.colorscheme 'oldworld'
+
+vim.pack.add { 'https://github.com/zenbones-theme/zenbones.nvim.git', 'https://github.com/rktjmp/lush.nvim.git' }
+vim.g.zenbones = { darkness = 'stark' }
+vim.g.rosebones = { darkness = 'stark' }
+vim.cmd.colorscheme 'zenbones'

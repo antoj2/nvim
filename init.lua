@@ -28,6 +28,35 @@ require('fidget').setup {
 vim.pack.add { 'https://github.com/neovim/nvim-lspconfig' }
 vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'bashls', 'basedpyright', 'ts_ls', 'pico8_ls' }
 
+local last_current_line = false
+
+-- toggle current line only
+vim.keymap.set('n', '<M-e>', function()
+  local vl = vim.diagnostic.config().virtual_lines
+  if type(vl) == 'table' and vl.current_line then
+    vim.diagnostic.config { virtual_lines = false }
+    last_current_line = true
+  else
+    vim.diagnostic.config { virtual_lines = { current_line = true } }
+    last_current_line = true
+  end
+end, { desc = 'Toggle virtual lines for current line' })
+
+-- toggle all lines with memory
+vim.keymap.set('n', '<M-E>', function()
+  local vl = vim.diagnostic.config().virtual_lines
+  if vl == true then
+    if last_current_line then
+      vim.diagnostic.config { virtual_lines = { current_line = true } }
+    else
+      vim.diagnostic.config { virtual_lines = false }
+    end
+  else
+    last_current_line = (type(vl) == 'table' and vl.current_line) or false
+    vim.diagnostic.config { virtual_lines = true }
+  end
+end, { desc = 'Toggle virtual lines globally with memory' })
+
 -- Java
 vim.pack.add {
   {
@@ -72,6 +101,13 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'kitty',
+  callback = function()
+    vim.bo.commentstring = '# %s'
+  end,
+})
+
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
   callback = function(event)
@@ -94,12 +130,49 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-vim.pack.add { { src = 'https://github.com/saghen/blink.cmp.git', version = vim.version.range '*' } }
+vim.api.nvim_create_autocmd('PackChanged', {
+  callback = function(ev)
+    if ev.data.spec.name ~= 'blink.cmp' then
+      return
+    end
+
+    vim.notify('Building blink.cmp', vim.log.levels.INFO)
+
+    vim.fn.jobstart({ 'cargo', 'build', '--release' }, {
+      cwd = ev.data.path,
+      on_stdout = function(_, data)
+        for _, line in ipairs(data) do
+          if line ~= '' then
+            vim.notify('[blink.cmp] ' .. line, vim.log.levels.INFO)
+          end
+        end
+      end,
+      on_stderr = function(_, data)
+        for _, line in ipairs(data) do
+          if line ~= '' then
+            vim.notify('[blink.cmp] ' .. line, vim.log.levels.INFO)
+          end
+        end
+      end,
+      on_exit = function(_, code)
+        if code == 0 then
+          vim.notify('blink.cmp build finished successfully', vim.log.levels.INFO)
+        else
+          vim.notify(('blink.cmp build failed (exit code %d)'):format(code), vim.log.levels.ERROR)
+        end
+      end,
+      stdout_buffered = false,
+      stderr_buffered = false,
+    })
+  end,
+})
+
+vim.pack.add { 'https://github.com/saghen/blink.cmp.git' }
 require('blink.cmp').setup {
   completion = {
     menu = { border = 'none' },
     documentation = { auto_show = true, auto_show_delay_ms = 0 },
-    ghost_text = { enabled = true },
+    ghost_text = { enabled = false },
   },
   sources = {
     default = { 'lsp', 'buffer', 'path', 'cmdline' },
@@ -161,7 +234,7 @@ map('n', 'gD', fzf.lsp_declarations, { desc = 'LSP declarations' })
 map('n', 'grr', fzf.lsp_references, { desc = 'LSP references' })
 map('n', 'gi', fzf.lsp_implementations, { desc = 'LSP implementations' })
 map('n', 'gcd', fzf.diagnostics_workspace, { desc = 'Workspace diagnostics' })
-map('n', '<leader>sbl', fzf.builtin, { desc = 'Fzf-lua builtins' })
+map('n', '<leader>sb', fzf.builtin, { desc = 'Fzf-lua builtins' })
 map('n', '<leader>man', fzf.manpages, { desc = 'Manpages' })
 map('n', '<leader>sh', fzf.helptags, { desc = 'Search helptags' })
 

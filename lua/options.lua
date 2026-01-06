@@ -43,9 +43,3 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 
 vim.g.loaded_python3_provider = 0
-
-vim.filetype.add {
-  extension = {
-    p8 = 'p8',
-  },
-}

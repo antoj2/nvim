@@ -1,3 +1,5 @@
+_G.is_mac = vim.loop.os_uname().sysname == 'Darwin'
+
 require 'options'
 require 'plugins.colorscheme'
 
@@ -26,7 +28,11 @@ require('fidget').setup {
 }
 
 vim.pack.add { 'https://github.com/neovim/nvim-lspconfig' }
-vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'bashls', 'basedpyright', 'ts_ls', 'pico8_ls' }
+vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'bashls', 'basedpyright' }
+
+if is_mac then
+  vim.lsp.enable 'ts_ls'
+end
 
 local last_current_line = false
 
@@ -92,14 +98,24 @@ require('java').setup {
 }
 vim.lsp.enable 'jdtls'
 
-vim.treesitter.language.register('pico8', 'p8')
+-- Pico-8
+if is_mac then
+  vim.filetype.add {
+    extension = {
+      p8 = 'p8',
+    },
+  }
 
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = { '*.p8' },
-  callback = function()
-    vim.bo.commentstring = '-- %s'
-  end,
-})
+  vim.treesitter.language.register('pico8', 'p8')
+
+  vim.api.nvim_create_autocmd('FileType', {
+    pattern = { '*.p8' },
+    callback = function()
+      vim.bo.commentstring = '-- %s'
+    end,
+  })
+  vim.lsp.enable 'pico8_ls'
+end
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'kitty',

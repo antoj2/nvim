@@ -4,6 +4,10 @@
       "rev": "327fff91fe6af358e990be7be1ec8b78037d2138",
       "src": "https://github.com/saghen/blink.cmp.git"
     },
+    "catppuccin": {
+      "rev": "6efc53e42cfc97700f19043105bf73ba83c4ae7d",
+      "src": "https://github.com/catppuccin/nvim.git"
+    },
     "conform.nvim": {
       "rev": "8314f4c9e205e7f30b62147069729f9a1227d8bf",
       "src": "https://github.com/stevearc/conform.nvim.git"
@@ -73,17 +77,9 @@
       "src": "https://github.com/JavaHello/spring-boot.nvim",
       "version": "'218c0c26c14d99feca778e4d13f5ec3e8b1b60f0'"
     },
-    "vague.nvim": {
-      "rev": "fcc283576764474ccfbbcca240797d5d7f4d8a78",
-      "src": "https://github.com/vague-theme/vague.nvim.git"
-    },
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
       "src": "https://github.com/folke/which-key.nvim.git"
-    },
-    "zenbones.nvim": {
-      "rev": "4635a3f46d1066975d1074cd9f61f93cb1e32f64",
-      "src": "https://github.com/zenbones-theme/zenbones.nvim.git"
     }
   }
 }

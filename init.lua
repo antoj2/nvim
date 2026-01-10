@@ -117,12 +117,14 @@ if is_mac then
   vim.lsp.enable 'pico8_ls'
 end
 
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'kitty',
-  callback = function()
-    vim.bo.commentstring = '# %s'
-  end,
-})
+if is_mac then
+  vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'kitty',
+    callback = function()
+      vim.bo.commentstring = '# %s'
+    end,
+  })
+end
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),

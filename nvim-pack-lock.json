@@ -1,31 +1,31 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "327fff91fe6af358e990be7be1ec8b78037d2138",
+      "rev": "356ec151b9a49b8750f5c1ea90801212a0a80644",
       "src": "https://github.com/saghen/blink.cmp.git"
     },
     "catppuccin": {
-      "rev": "6efc53e42cfc97700f19043105bf73ba83c4ae7d",
+      "rev": "beaf41a30c26fd7d6c386d383155cbd65dd554cd",
       "src": "https://github.com/catppuccin/nvim.git"
     },
     "conform.nvim": {
-      "rev": "8314f4c9e205e7f30b62147069729f9a1227d8bf",
+      "rev": "238f542a118984a88124fc915d5b981680418707",
       "src": "https://github.com/stevearc/conform.nvim.git"
     },
     "copilot.lua": {
-      "rev": "e78d1ffebdf6ccb6fd8be4e6898030c1cf5f9b64",
+      "rev": "0ab400d547814b04b39a069208ff7b40ab22dfb5",
       "src": "https://github.com/zbirenbaum/copilot.lua.git"
     },
     "fidget.nvim": {
-      "rev": "64463022a1f2ff1318ab22a2ea4125ed9313a483",
+      "rev": "7fa433a83118a70fe24c1ce88d5f0bd3453c0970",
       "src": "https://github.com/j-hui/fidget.nvim.git"
     },
     "fzf-lua": {
-      "rev": "a03d68e40eea835a1cdbd9f93049708dab3621e6",
+      "rev": "578a11f9f7c5f4436b833731ccceeda9479562f0",
       "src": "https://github.com/ibhagwan/fzf-lua.git"
     },
     "gitsigns.nvim": {
-      "rev": "6bd29494e3f79ff08be1d35bc1926ed23c22ed9a",
+      "rev": "42d6aed4e94e0f0bbced16bbdcc42f57673bd75e",
       "src": "https://github.com/lewis6991/gitsigns.nvim.git"
     },
     "guess-indent.nvim": {
@@ -57,7 +57,7 @@
       "src": "https://github.com/MunifTanjim/nui.nvim"
     },
     "nvim-dap": {
-      "rev": "03e83f1513264ca694ff35433f361fe993fcb83c",
+      "rev": "cdfd55a133f63228c55f91378f12908cb2a78ded",
       "src": "https://github.com/mfussenegger/nvim-dap"
     },
     "nvim-java": {
@@ -65,11 +65,11 @@
       "src": "https://github.com/nvim-java/nvim-java"
     },
     "nvim-lspconfig": {
-      "rev": "0b38bc74487e73489624d61396af7805af9cc75f",
+      "rev": "92ee7d42320edfbb81f3cad851314ab197fa324a",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "oil.nvim": {
-      "rev": "81b8a91735ad5cd24a6b3137f14a89f19176364f",
+      "rev": "6b59a6cf623fa2245c7454ddb458df5bdb6615d3",
       "src": "https://github.com/stevearc/oil.nvim.git"
     },
     "spring-boot.nvim": {

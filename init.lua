@@ -31,7 +31,7 @@ vim.pack.add { 'https://github.com/neovim/nvim-lspconfig' }
 vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'bashls', 'basedpyright' }
 
 if is_mac then
-  vim.lsp.enable 'ts_ls'
+  vim.lsp.enable { 'ts_ls', 'emmet_language_server' }
 end
 
 local last_current_line = false

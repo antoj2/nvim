@@ -31,7 +31,7 @@ vim.pack.add { 'https://github.com/neovim/nvim-lspconfig' }
 vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'bashls', 'basedpyright' }
 
 if is_mac then
-  vim.lsp.enable { 'ts_ls', 'emmet_language_server' }
+  vim.lsp.enable { 'ts_ls', 'emmet_language_server', 'clangd' }
 end
 
 local last_current_line = false
@@ -62,41 +62,6 @@ vim.keymap.set('n', '<M-E>', function()
     vim.diagnostic.config { virtual_lines = true }
   end
 end, { desc = 'Toggle virtual lines globally with memory' })
-
--- Java
-vim.pack.add {
-  {
-    src = 'https://github.com/JavaHello/spring-boot.nvim',
-    version = '218c0c26c14d99feca778e4d13f5ec3e8b1b60f0',
-  },
-  'https://github.com/MunifTanjim/nui.nvim',
-  'https://github.com/mfussenegger/nvim-dap',
-
-  'https://github.com/nvim-java/nvim-java',
-}
-
-require('java').setup {
-  jdk = {
-    auto_install = false,
-  },
-
-  lombok = {
-    enable = false,
-  },
-
-  java_test = {
-    enable = false,
-  },
-
-  java_debug_adapter = {
-    enable = false,
-  },
-
-  spring_boot_tools = {
-    enable = false,
-  },
-}
-vim.lsp.enable 'jdtls'
 
 -- Pico-8
 if is_mac then
@@ -297,6 +262,7 @@ require('conform').setup {
     typescriptreact = { 'prettier' },
     typst = { 'typstyle' },
     python = { 'ruff_format', 'black' },
+    cpp = { 'clang_format' },
   },
 }
 vim.keymap.set('n', '<leader>f', function()

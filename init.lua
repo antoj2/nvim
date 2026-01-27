@@ -36,7 +36,6 @@ end
 
 local last_current_line = false
 
--- toggle current line only
 vim.keymap.set('n', '<M-e>', function()
   local vl = vim.diagnostic.config().virtual_lines
   if type(vl) == 'table' and vl.current_line then
@@ -48,7 +47,6 @@ vim.keymap.set('n', '<M-e>', function()
   end
 end, { desc = 'Toggle virtual lines for current line' })
 
--- toggle all lines with memory
 vim.keymap.set('n', '<M-E>', function()
   local vl = vim.diagnostic.config().virtual_lines
   if vl == true then
@@ -150,32 +148,36 @@ vim.api.nvim_create_autocmd('PackChanged', {
   end,
 })
 
-vim.pack.add { 'https://github.com/saghen/blink.cmp.git' }
-require('blink.cmp').setup {
-  completion = {
-    menu = { border = 'none' },
-    documentation = { auto_show = true, auto_show_delay_ms = 0 },
-    ghost_text = { enabled = false },
-  },
-  sources = {
-    default = { 'lsp', 'buffer', 'path', 'cmdline' },
-  },
-  keymap = {
-    preset = 'enter',
-  },
-}
+vim.api.nvim_create_autocmd('InsertEnter', {
+  callback = function()
+    vim.pack.add { 'https://github.com/saghen/blink.cmp.git' }
+    require('blink.cmp').setup {
+      completion = {
+        menu = { border = 'none' },
+        documentation = { auto_show = true, auto_show_delay_ms = 0 },
+        ghost_text = { enabled = false },
+      },
+      sources = {
+        default = { 'lsp', 'buffer', 'path', 'cmdline' },
+      },
+      keymap = {
+        preset = 'enter',
+      },
+    }
 
-vim.pack.add { 'https://github.com/zbirenbaum/copilot.lua.git' }
-require('copilot').setup {
-  suggestion = {
-    auto_trigger = true,
-    keymap = {
-      accept = '<Tab>',
-      next = '<M-Right>',
-      prev = '<M-Left>',
-    },
-  },
-}
+    vim.pack.add { 'https://github.com/zbirenbaum/copilot.lua.git' }
+    require('copilot').setup {
+      suggestion = {
+        auto_trigger = true,
+        keymap = {
+          accept = '<Tab>',
+          next = '<M-Right>',
+          prev = '<M-Left>',
+        },
+      },
+    }
+  end,
+})
 
 vim.pack.add { 'https://github.com/lewis6991/gitsigns.nvim.git' }
 require('gitsigns').setup {

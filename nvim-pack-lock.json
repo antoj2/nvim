@@ -1,7 +1,7 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "b137f63d89d0285ca76eed12e1923220e0aff8c1",
+      "rev": "fab799d086fd63fa5b389007f63767b23885ebf8",
       "src": "https://github.com/saghen/blink.cmp.git"
     },
     "catppuccin": {
@@ -13,7 +13,7 @@
       "src": "https://github.com/stevearc/conform.nvim.git"
     },
     "copilot.lua": {
-      "rev": "2ede0808fa8dace39ea2a0f09b7bc6583655b730",
+      "rev": "9b8d77c6c847c83c784c05f5f86b4821ed90d3a1",
       "src": "https://github.com/zbirenbaum/copilot.lua.git"
     },
     "fidget.nvim": {
@@ -21,7 +21,7 @@
       "src": "https://github.com/j-hui/fidget.nvim.git"
     },
     "fzf-lua": {
-      "rev": "d59f857c76eb474ec00debcf043f14fd001805cc",
+      "rev": "b4b1f05957a77f7662de834328827890c1a8c02b",
       "src": "https://github.com/ibhagwan/fzf-lua.git"
     },
     "gitsigns.nvim": {
@@ -36,10 +36,6 @@
       "rev": "47f91c416daef12db467145e16bed5bbfe00add8",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
-    "lush.nvim": {
-      "rev": "9c60ec2279d62487d942ce095e49006af28eed6e",
-      "src": "https://github.com/rktjmp/lush.nvim.git"
-    },
     "mini.ai": {
       "rev": "9eae720f2b20f6ad28cbfa0ddc524e10dc2c3201",
       "src": "https://github.com/nvim-mini/mini.ai.git"
@@ -53,20 +49,20 @@
       "src": "https://github.com/nvim-mini/mini.surround.git"
     },
     "nvim-lspconfig": {
-      "rev": "ff9c0af8f9b2097fdd2695058db7e04c193908aa",
+      "rev": "3f58aeca0c6ece8a9fb8782ea3fcb6024f285be3",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "oil.nvim": {
       "rev": "f55b25e493a7df76371cfadd0ded5004cb9cd48a",
       "src": "https://github.com/stevearc/oil.nvim.git"
     },
+    "silentium.nvim": {
+      "rev": "a60f04405c2e0cfb720660fc82e44369fa4c087e",
+      "src": "https://github.com/silentium-theme/silentium.nvim.git"
+    },
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
       "src": "https://github.com/folke/which-key.nvim.git"
-    },
-    "zenbones.nvim": {
-      "rev": "4635a3f46d1066975d1074cd9f61f93cb1e32f64",
-      "src": "https://github.com/zenbones-theme/zenbones.nvim.git"
     }
   }
 }

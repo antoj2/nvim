@@ -27,11 +27,13 @@ require('fidget').setup {
   },
 }
 
+vim.notify = require('fidget').notify
+
 vim.pack.add { 'https://github.com/neovim/nvim-lspconfig' }
 vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'bashls', 'basedpyright' }
 
 if is_mac then
-  vim.lsp.enable { 'ts_ls', 'emmet_language_server', 'clangd' }
+  vim.lsp.enable { 'ts_ls', 'emmet_language_server', 'clangd', 'tailwindcss' }
 end
 
 local last_current_line = false
@@ -205,7 +207,13 @@ vim.keymap.set('n', '<leader>io', '<CMD>Oil --float<CR>', { desc = 'Open Oil' })
 
 vim.pack.add { 'https://github.com/ibhagwan/fzf-lua.git' }
 local fzf = require 'fzf-lua'
-fzf.setup {}
+fzf.setup {
+  keymap = {
+    fzf = {
+      ['ctrl-q'] = 'select-all+accept',
+    },
+  },
+}
 local map = vim.keymap.set
 map('n', '<leader>sk', fzf.keymaps, { desc = 'Search keymaps' })
 map('n', '<leader>ss', fzf.live_grep, { desc = 'Live grep current project' })
@@ -214,14 +222,17 @@ map('n', '<leader><leader>', fzf.buffers, { desc = 'Open buffers' })
 map('n', '<leader>sr', fzf.oldfiles, { desc = 'Recent files' })
 map('n', '<C-P>', fzf.lsp_document_symbols, { desc = 'Search LSP symbols' })
 map('n', '<leader>sf', fzf.files, { desc = 'Project files' })
+map('n', '<leader>sb', fzf.builtin, { desc = 'Fzf-lua builtins' })
+map('n', '<leader>man', fzf.manpages, { desc = 'Manpages' })
+map('n', '<leader>sh', fzf.helptags, { desc = 'Search helptags' })
 map('n', 'gd', fzf.lsp_definitions, { desc = 'LSP definitions' })
 map('n', 'gD', fzf.lsp_declarations, { desc = 'LSP declarations' })
 map('n', 'grr', fzf.lsp_references, { desc = 'LSP references' })
 map('n', 'gi', fzf.lsp_implementations, { desc = 'LSP implementations' })
-map('n', 'gcd', fzf.diagnostics_workspace, { desc = 'Workspace diagnostics' })
-map('n', '<leader>sb', fzf.builtin, { desc = 'Fzf-lua builtins' })
-map('n', '<leader>man', fzf.manpages, { desc = 'Manpages' })
-map('n', '<leader>sh', fzf.helptags, { desc = 'Search helptags' })
+map('n', 'gb', fzf.diagnostics_document, { desc = 'Buffer diagnostics' })
+map('n', 'ge', fzf.diagnostics_workspace, { desc = 'Workspace diagnostics' })
+
+fzf.register_ui_select()
 
 vim.pack.add { 'https://github.com/nvim-mini/mini.ai.git' }
 require('mini.ai').setup()

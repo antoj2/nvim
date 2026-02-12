@@ -1,7 +1,7 @@
 # nvim
 
-pretty much just got tired of lazy loading and decided to use the new vim.pack
+I got tired of lazy.nvim and just decided to try the new vim.pack. Single file, no modularity, I just find it easier.
 
-# dependencies
+# Dependencies
 
-requires neovim version 0.12 (currently nightly)
+* Uses vim.pack which is currently only in Neovim Nightly

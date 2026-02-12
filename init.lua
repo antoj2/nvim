@@ -1,7 +1,6 @@
 _G.is_mac = vim.loop.os_uname().sysname == 'Darwin'
 
 require 'options'
-require 'plugins.colorscheme'
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
@@ -21,19 +20,20 @@ vim.pack.add { 'https://github.com/NMAC427/guess-indent.nvim.git' }
 require('guess-indent').setup {}
 
 vim.pack.add { 'https://github.com/j-hui/fidget.nvim.git' }
-require('fidget').setup {
+local fidget = require 'fidget'
+fidget.setup {
   notification = {
     poll_rate = 7,
   },
 }
 
-vim.notify = require('fidget').notify
+vim.notify = fidget.notify
 
 vim.pack.add { 'https://github.com/neovim/nvim-lspconfig' }
 vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'bashls', 'basedpyright' }
 
 if is_mac then
-  vim.lsp.enable { 'ts_ls', 'emmet_language_server', 'clangd', 'tailwindcss' }
+  vim.lsp.enable { 'vtsls', 'emmet_language_server', 'clangd', 'tailwindcss' }
 end
 
 local last_current_line = false
@@ -115,44 +115,51 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 vim.api.nvim_create_autocmd('PackChanged', {
   callback = function(ev)
-    if ev.data.spec.name ~= 'blink.cmp' then
-      return
+    if ev.data.spec.name == 'blink.cmp' then
+      vim.notify('Building blink.cmp', vim.log.levels.INFO)
+
+      vim.fn.jobstart({ 'cargo', 'build', '--release' }, {
+        cwd = ev.data.path,
+        on_stdout = function(_, data)
+          for _, line in ipairs(data) do
+            if line ~= '' then
+              vim.notify('[blink.cmp] ' .. line, vim.log.levels.INFO)
+            end
+          end
+        end,
+        on_stderr = function(_, data)
+          for _, line in ipairs(data) do
+            if line ~= '' then
+              vim.notify('[blink.cmp] ' .. line, vim.log.levels.INFO)
+            end
+          end
+        end,
+        on_exit = function(_, code)
+          if code == 0 then
+            vim.notify('blink.cmp build finished successfully', vim.log.levels.INFO)
+          else
+            vim.notify(('blink.cmp build failed (exit code %d)'):format(code), vim.log.levels.ERROR)
+          end
+        end,
+        stdout_buffered = false,
+        stderr_buffered = false,
+      })
+    elseif ev.data.spec.name == 'nvim-treesitter' then
+      vim.notify('Updating nvim-treesitter parsers', vim.log.levels.INFO)
+      vim.cmd 'TSUpdate'
     end
-
-    vim.notify('Building blink.cmp', vim.log.levels.INFO)
-
-    vim.fn.jobstart({ 'cargo', 'build', '--release' }, {
-      cwd = ev.data.path,
-      on_stdout = function(_, data)
-        for _, line in ipairs(data) do
-          if line ~= '' then
-            vim.notify('[blink.cmp] ' .. line, vim.log.levels.INFO)
-          end
-        end
-      end,
-      on_stderr = function(_, data)
-        for _, line in ipairs(data) do
-          if line ~= '' then
-            vim.notify('[blink.cmp] ' .. line, vim.log.levels.INFO)
-          end
-        end
-      end,
-      on_exit = function(_, code)
-        if code == 0 then
-          vim.notify('blink.cmp build finished successfully', vim.log.levels.INFO)
-        else
-          vim.notify(('blink.cmp build failed (exit code %d)'):format(code), vim.log.levels.ERROR)
-        end
-      end,
-      stdout_buffered = false,
-      stderr_buffered = false,
-    })
   end,
 })
+vim.pack.add { 'https://github.com/nvim-treesitter/nvim-treesitter.git' }
+require('nvim-treesitter').setup {
+  indent = { enable = true },
+  highlight = { enable = true },
+}
 
+vim.pack.add { 'https://github.com/saghen/blink.cmp.git' }
+vim.pack.add { 'https://github.com/zbirenbaum/copilot.lua.git' }
 vim.api.nvim_create_autocmd('InsertEnter', {
   callback = function()
-    vim.pack.add { 'https://github.com/saghen/blink.cmp.git' }
     require('blink.cmp').setup {
       completion = {
         menu = { border = 'none' },
@@ -167,10 +174,12 @@ vim.api.nvim_create_autocmd('InsertEnter', {
       },
     }
 
-    vim.pack.add { 'https://github.com/zbirenbaum/copilot.lua.git' }
     require('copilot').setup {
+      server = {
+        type = 'binary',
+      },
       suggestion = {
-        auto_trigger = true,
+        auto_trigger = false,
         keymap = {
           accept = '<Tab>',
           next = '<M-Right>',
@@ -181,14 +190,15 @@ vim.api.nvim_create_autocmd('InsertEnter', {
   end,
 })
 
-vim.pack.add { 'https://github.com/lewis6991/gitsigns.nvim.git' }
-require('gitsigns').setup {
-  signs = {
-    add = { text = '+' },
-    change = { text = '~' },
-    delete = { text = '_' },
-    topdelete = { text = '‾' },
-    changedelete = { text = '~' },
+vim.pack.add { 'https://github.com/nvim-mini/mini.diff.git' }
+require('mini.diff').setup {
+  view = {
+    style = 'sign',
+    signs = {
+      add = '+',
+      delete = '-',
+      change = '~',
+    },
   },
 }
 
@@ -284,3 +294,5 @@ end, { desc = 'Format file' })
 
 vim.pack.add { 'https://github.com/folke/which-key.nvim.git' }
 require('which-key').setup {}
+
+require 'plugins.colorscheme'

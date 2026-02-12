@@ -36,15 +36,21 @@ if not _G.is_mac then
 end
 
 if _G.is_mac then
-  -- vim.pack.add { 'https://github.com/zenbones-theme/zenbones.nvim.git', 'https://github.com/rktjmp/lush.nvim.git' }
-  -- vim.g.zenbones = { darkness = 'stark' }
-  -- vim.cmd.colorscheme 'zenbones'
-
   vim.pack.add { 'https://github.com/silentium-theme/silentium.nvim.git' }
   local silentium = require 'silentium'
   silentium.setup { accent = silentium.accents.pink }
   vim.cmd.colorscheme 'silentium'
-  vim.api.nvim_set_hl(0, 'StatusLine', { bg = silentium.colors.dark })
+  local theme = require 'lualine.themes.auto'
+  theme.normal.c = { bg = silentium.colors.dark, fg = silentium.colors.light_gray }
+  theme.insert.c = { bg = silentium.colors.dark, fg = silentium.colors.light_gray }
+  theme.visual.c = { bg = silentium.colors.dark, fg = silentium.colors.light_gray }
+  theme.replace.c = { bg = silentium.colors.dark, fg = silentium.colors.light_gray }
+  theme.command.c = { bg = silentium.colors.dark, fg = silentium.colors.light_gray }
+  require('lualine').setup {
+    options = {
+      theme = theme,
+    },
+  }
   local diagnostic_error = vim.api.nvim_get_hl(0, { name = 'DiagnosticError', link = false })
   vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', { undercurl = true, sp = diagnostic_error.fg, fg = diagnostic_error.fg })
   vim.api.nvim_set_hl(0, 'LspInlayHint', { fg = silentium.colors.gray, italic = true })

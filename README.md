@@ -1,6 +1,6 @@
 # nvim
 
-I got tired of lazy.nvim and just decided to try the new vim.pack. Single file, no modularity, I just find it easier.
+lazy.nvim is for chuds and I am NOT a chud
 
 # Dependencies
 

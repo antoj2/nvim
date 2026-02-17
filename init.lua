@@ -1,6 +1,7 @@
 _G.is_mac = vim.loop.os_uname().sysname == 'Darwin'
 
 require 'options'
+require 'plugins.colorscheme'
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
@@ -32,7 +33,7 @@ vim.notify = fidget.notify
 vim.pack.add { 'https://github.com/neovim/nvim-lspconfig' }
 vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'bashls', 'basedpyright' }
 
-if is_mac then
+if _G.is_mac then
   vim.lsp.enable { 'vtsls', 'emmet_language_server', 'clangd', 'tailwindcss' }
 end
 
@@ -64,7 +65,7 @@ vim.keymap.set('n', '<M-E>', function()
 end, { desc = 'Toggle virtual lines globally with memory' })
 
 -- Pico-8
-if is_mac then
+if _G.is_mac then
   vim.filetype.add {
     extension = {
       p8 = 'p8',
@@ -82,7 +83,7 @@ if is_mac then
   vim.lsp.enable 'pico8_ls'
 end
 
-if is_mac then
+if _G.is_mac then
   vim.api.nvim_create_autocmd('FileType', {
     pattern = 'kitty',
     callback = function()
@@ -147,19 +148,20 @@ vim.api.nvim_create_autocmd('PackChanged', {
     elseif ev.data.spec.name == 'nvim-treesitter' then
       vim.notify('Updating nvim-treesitter parsers', vim.log.levels.INFO)
       vim.cmd 'TSUpdate'
+      vim.notify('nvim-treesitter parsers updated', vim.log.levels.INFO)
     end
   end,
 })
+
 vim.pack.add { 'https://github.com/nvim-treesitter/nvim-treesitter.git' }
 require('nvim-treesitter').setup {
   indent = { enable = true },
   highlight = { enable = true },
 }
 
-vim.pack.add { 'https://github.com/saghen/blink.cmp.git' }
-vim.pack.add { 'https://github.com/zbirenbaum/copilot.lua.git' }
 vim.api.nvim_create_autocmd('InsertEnter', {
   callback = function()
+    vim.pack.add { 'https://github.com/saghen/blink.cmp.git' }
     require('blink.cmp').setup {
       completion = {
         menu = { border = 'none' },
@@ -174,6 +176,7 @@ vim.api.nvim_create_autocmd('InsertEnter', {
       },
     }
 
+    vim.pack.add { 'https://github.com/zbirenbaum/copilot.lua.git' }
     require('copilot').setup {
       server = {
         type = 'binary',
@@ -181,7 +184,7 @@ vim.api.nvim_create_autocmd('InsertEnter', {
       suggestion = {
         auto_trigger = false,
         keymap = {
-          accept = '<Tab>',
+          accept = '<C-y>',
           next = '<M-Right>',
           prev = '<M-Left>',
         },
@@ -294,5 +297,3 @@ end, { desc = 'Format file' })
 
 vim.pack.add { 'https://github.com/folke/which-key.nvim.git' }
 require('which-key').setup {}
-
-require 'plugins.colorscheme'

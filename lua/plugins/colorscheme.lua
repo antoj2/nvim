@@ -40,17 +40,7 @@ if _G.is_mac then
   local silentium = require 'silentium'
   silentium.setup { accent = silentium.accents.pink }
   vim.cmd.colorscheme 'silentium'
-  local theme = require 'lualine.themes.auto'
-  theme.normal.c = { bg = silentium.colors.dark, fg = silentium.colors.light_gray }
-  theme.insert.c = { bg = silentium.colors.dark, fg = silentium.colors.light_gray }
-  theme.visual.c = { bg = silentium.colors.dark, fg = silentium.colors.light_gray }
-  theme.replace.c = { bg = silentium.colors.dark, fg = silentium.colors.light_gray }
-  theme.command.c = { bg = silentium.colors.dark, fg = silentium.colors.light_gray }
-  require('lualine').setup {
-    options = {
-      theme = theme,
-    },
-  }
+  vim.api.nvim_set_hl(0, 'StatusLine', { bg = silentium.colors.dark })
   local diagnostic_error = vim.api.nvim_get_hl(0, { name = 'DiagnosticError', link = false })
   vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', { undercurl = true, sp = diagnostic_error.fg, fg = diagnostic_error.fg })
   vim.api.nvim_set_hl(0, 'LspInlayHint', { fg = silentium.colors.gray, italic = true })

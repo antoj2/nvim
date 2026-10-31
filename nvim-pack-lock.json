@@ -1,27 +1,23 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "cd79f572971c58784ca72551af29af3a63da9168",
+      "rev": "d4318ec75309a37e09757de0f16faa67bf22b890",
       "src": "https://github.com/saghen/blink.cmp.git"
     },
-    "catppuccin": {
-      "rev": "0a5de4da015a175f416d6ef1eda84661623e0500",
-      "src": "https://github.com/catppuccin/nvim.git"
+    "blink.lib": {
+      "rev": "fd9a48ebbe6ec30d5dfcc5b42c243941ccdca1aa",
+      "src": "https://github.com/saghen/blink.lib.git"
     },
     "conform.nvim": {
-      "rev": "c2526f1cde528a66e086ab1668e996d162c75f4f",
+      "rev": "016802de402556da54c36bd7359b441266b01cdd",
       "src": "https://github.com/stevearc/conform.nvim.git"
     },
-    "copilot.lua": {
-      "rev": "dd3e345d59051464573d821b042f0a0c82410b5d",
-      "src": "https://github.com/zbirenbaum/copilot.lua.git"
-    },
     "fidget.nvim": {
-      "rev": "7fa433a83118a70fe24c1ce88d5f0bd3453c0970",
+      "rev": "9e0201673e08e997e7cf52afca5565c70bd117f3",
       "src": "https://github.com/j-hui/fidget.nvim.git"
     },
     "fzf-lua": {
-      "rev": "5921997472574fca3880b62949eb8679dc6f5afc",
+      "rev": "5b88d6f0af7fcb41d4a8bb340bf70d7e3824ee9d",
       "src": "https://github.com/ibhagwan/fzf-lua.git"
     },
     "guess-indent.nvim": {
@@ -29,39 +25,39 @@
       "src": "https://github.com/NMAC427/guess-indent.nvim.git"
     },
     "lualine.nvim": {
-      "rev": "47f91c416daef12db467145e16bed5bbfe00add8",
+      "rev": "221ce6b2d999187044529f49da6554a92f740a96",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "mini.ai": {
-      "rev": "9eae720f2b20f6ad28cbfa0ddc524e10dc2c3201",
+      "rev": "a4f5648dedf435e6306205135d1babb563b55d28",
       "src": "https://github.com/nvim-mini/mini.ai.git"
     },
     "mini.diff": {
-      "rev": "6010e588e9ed14724880f244d7fa3df8f0be3f46",
+      "rev": "47ab8cf21c62cfd952008f2b9e79417c98173ec1",
       "src": "https://github.com/nvim-mini/mini.diff.git"
     },
     "mini.icons": {
-      "rev": "68c178e0958d95b3977a771f3445429b1bded985",
+      "rev": "eab3e692d796d78ea6ffc978d8a380ff26fcf4e3",
       "src": "https://github.com/nvim-mini/mini.icons.git"
     },
     "mini.surround": {
-      "rev": "d648a5601e1c48f175b07d10eba141da338a0a2a",
+      "rev": "5357f00aca51a3b43e7775901b1ad9699f8c2678",
       "src": "https://github.com/nvim-mini/mini.surround.git"
     },
     "nvim-lspconfig": {
-      "rev": "44acfe887d4056f704ccc4f17513ed41c9e2b2e6",
+      "rev": "460bb34e7be114f1fda7815781696bc701e60f83",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "4d9466677a5ceadef104eaa0fe08d60d91c4e9a7",
+      "rev": "a2f694478be07f89c2d03cc17858a8745a400c4b",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter.git"
     },
     "oil.nvim": {
-      "rev": "f55b25e493a7df76371cfadd0ded5004cb9cd48a",
+      "rev": "d3733d933833a0e59b813ecec99341527adf0c28",
       "src": "https://github.com/stevearc/oil.nvim.git"
     },
     "silentium.nvim": {
-      "rev": "a60f04405c2e0cfb720660fc82e44369fa4c087e",
+      "rev": "c2c691773492b9a4a339b89628abd85c22e9b070",
       "src": "https://github.com/silentium-theme/silentium.nvim.git"
     },
     "which-key.nvim": {

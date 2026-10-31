@@ -1,6 +1,55 @@
 _G.is_mac = vim.loop.os_uname().sysname == 'Darwin'
 
-require 'options'
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
+vim.opt.swapfile = false
+vim.opt.clipboard = 'unnamedplus'
+vim.opt.undofile = true
+vim.opt.breakindent = true
+vim.opt.mouse = 'a'
+
+vim.opt.list = true
+vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
+
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.signcolumn = 'yes'
+
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 1000
+
+vim.opt.scrolloff = 10
+vim.opt.sidescrolloff = 15
+
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+vim.opt.winborder = 'rounded'
+vim.opt.inccommand = 'split'
+
+vim.opt.hlsearch = true
+
+vim.opt.termguicolors = true
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+vim.opt.showmode = false
+
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+vim.o.expandtab = true
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+
+vim.g.loaded_python3_provider = 0
+
+vim.opt.foldlevel = 99999
+vim.wo.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+
 require 'plugins.colorscheme'
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -9,11 +58,19 @@ vim.keymap.set('n', '<Leader>e', function()
   vim.diagnostic.open_float()
 end)
 
+vim.keymap.set('n', 'j', function()
+  return vim.v.count > 0 and 'j' or 'gj'
+end, { expr = true })
+
+vim.keymap.set('n', 'k', function()
+  return vim.v.count > 0 and 'k' or 'gk'
+end, { expr = true })
+
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function()
-    vim.hl.on_yank()
+    vim.hl.hl_op()
   end,
 })
 
@@ -34,7 +91,7 @@ vim.pack.add { 'https://github.com/neovim/nvim-lspconfig' }
 vim.lsp.enable { 'lua_ls', 'rust_analyzer', 'bashls', 'basedpyright' }
 
 if _G.is_mac then
-  vim.lsp.enable { 'vtsls', 'emmet_language_server', 'clangd', 'tailwindcss' }
+  vim.lsp.enable { 'vtsls', 'emmet_language_server', 'clangd', 'tailwindcss', 'sourcekit' }
 end
 
 local last_current_line = false
@@ -116,36 +173,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 vim.api.nvim_create_autocmd('PackChanged', {
   callback = function(ev)
-    if ev.data.spec.name == 'blink.cmp' then
-      vim.notify('Building blink.cmp', vim.log.levels.INFO)
-
-      vim.fn.jobstart({ 'cargo', 'build', '--release' }, {
-        cwd = ev.data.path,
-        on_stdout = function(_, data)
-          for _, line in ipairs(data) do
-            if line ~= '' then
-              vim.notify('[blink.cmp] ' .. line, vim.log.levels.INFO)
-            end
-          end
-        end,
-        on_stderr = function(_, data)
-          for _, line in ipairs(data) do
-            if line ~= '' then
-              vim.notify('[blink.cmp] ' .. line, vim.log.levels.INFO)
-            end
-          end
-        end,
-        on_exit = function(_, code)
-          if code == 0 then
-            vim.notify('blink.cmp build finished successfully', vim.log.levels.INFO)
-          else
-            vim.notify(('blink.cmp build failed (exit code %d)'):format(code), vim.log.levels.ERROR)
-          end
-        end,
-        stdout_buffered = false,
-        stderr_buffered = false,
-      })
-    elseif ev.data.spec.name == 'nvim-treesitter' then
+    if ev.data.spec.name == 'nvim-treesitter' then
       vim.notify('Updating nvim-treesitter parsers', vim.log.levels.INFO)
       vim.cmd 'TSUpdate'
       vim.notify('nvim-treesitter parsers updated', vim.log.levels.INFO)
@@ -161,10 +189,12 @@ require('nvim-treesitter').setup {
 
 vim.api.nvim_create_autocmd('InsertEnter', {
   callback = function()
+    vim.pack.add { 'https://github.com/saghen/blink.lib.git' }
     vim.pack.add { 'https://github.com/saghen/blink.cmp.git' }
+    require('blink.cmp').build():pwait()
     require('blink.cmp').setup {
       completion = {
-        menu = { border = 'none' },
+        -- menu = { border = 'none' },
         documentation = { auto_show = true, auto_show_delay_ms = 0 },
         ghost_text = { enabled = false },
       },
@@ -173,21 +203,6 @@ vim.api.nvim_create_autocmd('InsertEnter', {
       },
       keymap = {
         preset = 'enter',
-      },
-    }
-
-    vim.pack.add { 'https://github.com/zbirenbaum/copilot.lua.git' }
-    require('copilot').setup {
-      server = {
-        type = 'binary',
-      },
-      suggestion = {
-        auto_trigger = false,
-        keymap = {
-          accept = '<C-y>',
-          next = '<M-Right>',
-          prev = '<M-Left>',
-        },
       },
     }
   end,
@@ -286,9 +301,12 @@ require('conform').setup {
     lua = { 'stylua' },
     typescript = { 'prettier' },
     typescriptreact = { 'prettier' },
+    javascript = { 'prettier' },
+    javascriptreact = { 'prettier' },
     typst = { 'typstyle' },
     python = { 'ruff_format', 'black' },
     cpp = { 'clang_format' },
+    rust = { 'rustfmt' },
   },
 }
 vim.keymap.set('n', '<leader>f', function()

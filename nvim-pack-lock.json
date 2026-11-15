@@ -28,28 +28,16 @@
       "rev": "221ce6b2d999187044529f49da6554a92f740a96",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
-    "mini.ai": {
-      "rev": "c2e6e88a9de01b5aec5c3cffee1277b9ac8a6d69",
-      "src": "https://github.com/nvim-mini/mini.ai.git"
-    },
-    "mini.diff": {
-      "rev": "91d6ce4b7f400439fe761f01a58280f2c0f99c01",
-      "src": "https://github.com/nvim-mini/mini.diff.git"
-    },
-    "mini.icons": {
-      "rev": "fc90b3925a2a68282be06e28cfe0cbb366c75dad",
-      "src": "https://github.com/nvim-mini/mini.icons.git"
-    },
-    "mini.surround": {
-      "rev": "c17f9e2b2d685376b8ae7bb2cd8bb51dc7cd6d98",
-      "src": "https://github.com/nvim-mini/mini.surround.git"
+    "mini.nvim": {
+      "rev": "4d32e018f7cfcc0ba95357465516be615c542fef",
+      "src": "https://github.com/nvim-mini/mini.nvim.git"
     },
     "nvim-lspconfig": {
-      "rev": "443d92c6bea761ab54cdde46fb197a2b4d614bdd",
+      "rev": "05588aab66016c6836634b87ca2d392d097515f2",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "60c0f468de3e636fa660a419d537e8033aca4e39",
+      "rev": "04f17886f75416dfdc25374c950a52c63f0e98fe",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter.git"
     },
     "oil.nvim": {

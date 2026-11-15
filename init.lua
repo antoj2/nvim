@@ -189,7 +189,7 @@ vim.api.nvim_create_autocmd('InsertEnter', {
   end,
 })
 
-vim.pack.add { 'https://github.com/nvim-mini/mini.diff.git' }
+vim.pack.add { 'https://github.com/nvim-mini/mini.nvim.git' }
 require('mini.diff').setup {
   view = {
     style = 'sign',
@@ -200,9 +200,9 @@ require('mini.diff').setup {
     },
   },
 }
-
-vim.pack.add { 'https://github.com/nvim-mini/mini.icons.git' }
 require('mini.icons').setup()
+require('mini.ai').setup()
+require('mini.surround').setup()
 
 vim.pack.add { 'https://github.com/stevearc/oil.nvim.git' }
 require('oil').setup {
@@ -242,11 +242,6 @@ map('n', 'gb', fzf.diagnostics_document, { desc = 'Buffer diagnostics' })
 map('n', 'ge', fzf.diagnostics_workspace, { desc = 'Workspace diagnostics' })
 
 fzf.register_ui_select()
-
-vim.pack.add { 'https://github.com/nvim-mini/mini.ai.git' }
-require('mini.ai').setup()
-vim.pack.add { 'https://github.com/nvim-mini/mini.surround.git' }
-require('mini.surround').setup()
 
 vim.pack.add { 'https://github.com/nvim-lualine/lualine.nvim' }
 require('lualine').setup {

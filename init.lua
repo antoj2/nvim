@@ -121,25 +121,6 @@ vim.keymap.set('n', '<M-E>', function()
   end
 end, { desc = 'Toggle virtual lines globally with memory' })
 
--- Pico-8
-if _G.is_mac then
-  vim.filetype.add {
-    extension = {
-      p8 = 'p8',
-    },
-  }
-
-  vim.treesitter.language.register('pico8', 'p8')
-
-  vim.api.nvim_create_autocmd('FileType', {
-    pattern = { '*.p8' },
-    callback = function()
-      vim.bo.commentstring = '-- %s'
-    end,
-  })
-  vim.lsp.enable 'pico8_ls'
-end
-
 if _G.is_mac then
   vim.api.nvim_create_autocmd('FileType', {
     pattern = 'kitty',
@@ -291,7 +272,7 @@ vim.pack.add { 'https://github.com/stevearc/conform.nvim.git' }
 require('conform').setup {
   notify_on_error = false,
   format_on_save = function(bufnr)
-    local disable_filetypes = { c = true, p8 = true }
+    local disable_filetypes = { c = true }
     return {
       timeout_ms = 2500,
       lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
